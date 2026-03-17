@@ -109,10 +109,11 @@
         .title-wrapper {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             margin-bottom: 28px;
             flex-wrap: wrap;
             gap: 15px;
+            text-align: center;
         }
 
         .title {
@@ -128,6 +129,8 @@
             align-items: center;
             justify-content: center; 
             gap: 12px;
+            width: 100%;
+            text-align: center;
         }
 
         .title i {
@@ -470,183 +473,6 @@
             font-size: 1.2rem;
         }
 
-        .progress-panel {
-            background: rgba(15, 20, 30, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            border-radius: 32px;
-            padding: 28px;
-        }
-
-        .progress-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .progress-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .progress-title i {
-            color: #00ffff;
-        }
-
-        .attack-badge {
-            background: rgba(255, 0, 255, 0.2);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 30px;
-            padding: 5px 15px;
-            font-size: 0.9rem;
-            color: #ffa0ff;
-        }
-
-        .current-attack {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .attack-info {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .target-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .target-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #00ffff, #ff00ff);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #000;
-        }
-
-        .target-details h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .target-details p {
-            color: #aabbdd;
-            font-size: 0.9rem;
-        }
-
-        .stats-mini {
-            display: flex;
-            gap: 20px;
-        }
-
-        .stat-mini-item {
-            text-align: center;
-        }
-
-        .stat-mini-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #00ffff;
-            line-height: 1;
-        }
-
-        .stat-mini-label {
-            color: #aabbdd;
-            font-size: 0.8rem;
-        }
-
-        .progress-container {
-            margin-top: 20px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            color: #aabbdd;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
-            border-radius: 30px;
-            transition: width 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .message-preview {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 18px;
-            padding: 15px;
-            margin-top: 15px;
-            border: 1px solid rgba(255, 0, 255, 0.2);
-        }
-
-        .message-preview .label {
-            color: #ffa0ff;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .message-preview .content {
-            color: #fff;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            word-break: break-word;
-        }
-
         .active-list {
             margin-top: 25px;
         }
@@ -881,19 +707,24 @@
 
                 <div class="input-group">
                     <label class="input-label"><i class="fas fa-user"></i> NGL Username</label>
-                    <input type="text" class="input-field" id="username" placeholder="Enter username..." value="StarVerse">
+                    <input type="text" class="input-field" id="username" placeholder="Enter username...">
                 </div>
 
                 <div class="input-group">
                     <label class="input-label"><i class="fas fa-comment"></i> Message</label>
-                    <textarea class="input-field" id="message" placeholder="Enter your message...">test</textarea>
+                    <textarea class="input-field" id="message" placeholder="Enter your message..."></textarea>
                 </div>
-
                 <div class="input-group">
-                    <label class="input-label"><i class="fas fa-calculator"></i> Amount (1-500)</label>
-                    <input type="number" class="input-field" id="amount" min="1" max="500" value="50">
+                    <label class="input-label">Amount (Max 500)</label>
+                    <input 
+                    type="number" 
+                    class="input-field" 
+                    id="amount" 
+                    placeholder="Masukkan jumlah"
+                    min="0" 
+                    max="500"
+                    >
                 </div>
-
                 <div class="settings-grid">
                     <div class="setting-item">
                         <span class="setting-label"><i class="fas fa-shield"></i> Proxy</span>
@@ -916,56 +747,6 @@
                     START SPAM
                     <i class="fas fa-skull"></i>
                 </button>
-
-                <div class="progress-panel" id="progressPanel" style="display: none; margin-top: 20px;">
-                    <div class="progress-header">
-                        <div class="progress-title">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            Current Attack
-                        </div>
-                        <div class="attack-badge" id="currentTarget">@StarVerse</div>
-                    </div>
-
-                    <div class="current-attack">
-                        <div class="attack-info">
-                            <div class="target-info">
-                                <div class="target-avatar" id="targetAvatar">S</div>
-                                <div class="target-details">
-                                    <h3 id="targetUsername">@StarVerse</h3>
-                                    <p id="targetMessage">test</p>
-                                </div>
-                            </div>
-                            <div class="stats-mini">
-                                <div class="stat-mini-item">
-                                    <div class="stat-mini-value" id="currentSent">0</div>
-                                    <div class="stat-mini-label">Sent</div>
-                                </div>
-                                <div class="stat-mini-item">
-                                    <div class="stat-mini-value" id="currentFailed">0</div>
-                                    <div class="stat-mini-label">Failed</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="progress-container">
-                            <div class="progress-info">
-                                <span>Progress</span>
-                                <span id="progressPercent">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
-                            </div>
-                        </div>
-
-                        <div class="message-preview">
-                            <div class="label">
-                                <i class="fas fa-eye"></i>
-                                Message Preview
-                            </div>
-                            <div class="content" id="messagePreview">test</div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="attack-panel">
@@ -1017,9 +798,9 @@
     </div>
 
     <script>
-        // ===========================================
-        // STARVERSE NGL SPAMMER
-        // ===========================================
+        // =========================
+        // STARVERSE NGL SPAMMER 
+        // =========================
         let attacks = {};
         let attackId = 0;
         let stats = {
@@ -1119,7 +900,7 @@
                                 </div>
                                 <div class="attack-item-details">
                                     <h4>@${attack.username}</h4>
-                                    <p>${attack.sent}/${attack.amount} • ${progress}%</p>
+                                    <p>${attack.sent}/${attack.amount}</p>
                                 </div>
                             </div>
                             <div class="attack-item-progress">
@@ -1164,86 +945,71 @@
                 delay: delay,
                 active: true,
                 sent: 0,
-                failed: 0,
-                startTime: new Date().toISOString()
+                failed: 0
             };
             
             stats.totalAttacks++;
-            
             document.getElementById('startBtn').disabled = true;
-            document.getElementById('progressPanel').style.display = 'block';
-            document.getElementById('currentTarget').textContent = '@' + username;
-            document.getElementById('targetAvatar').textContent = username.charAt(0).toUpperCase();
-            document.getElementById('targetUsername').textContent = '@' + username;
-            document.getElementById('targetMessage').textContent = message;
-            document.getElementById('messagePreview').textContent = message;
-            document.getElementById('currentSent').textContent = '0';
-            document.getElementById('currentFailed').textContent = '0';
-            document.getElementById('progressBar').style.width = '0%';
-            document.getElementById('progressPercent').textContent = '0%';
             
             updateAttackList();
             
-            for (let i = 0; i < amount; i++) {
-                if (!attacks[id] || !attacks[id].active) break;
-                
-                const success = await sendNGLMessage(username, message);
-                
-                if (success) {
-                    attacks[id].sent++;
-                    stats.totalSent++;
-                } else {
-                    attacks[id].failed++;
+            (async function() {
+                for (let i = 0; i < amount; i++) {
+                    if (!attacks[id] || !attacks[id].active) break;
+                    
+                    const success = await sendNGLMessage(username, message);
+                    
+                    if (success) {
+                        attacks[id].sent++;
+                        stats.totalSent++;
+                    } else {
+                        attacks[id].failed++;
+                    }
+                    
+                    const total = attacks[id].sent + attacks[id].failed;
+                    stats.successRate = total > 0 ? Math.floor((attacks[id].sent / total) * 100) : 100;
+                    
+                    updateAttackList();
+                    
+                    if (i < amount - 1 && attacks[id] && attacks[id].active) {
+                        await new Promise(resolve => setTimeout(resolve, delay * 1000));
+                    }
                 }
                 
-                const sent = attacks[id].sent;
-                const failed = attacks[id].failed;
-                const progress = Math.floor((sent / amount) * 100);
+                if (attacks[id]) {
+                    attacks[id].active = false;
+                }
                 
-                document.getElementById('currentSent').textContent = sent;
-                document.getElementById('currentFailed').textContent = failed;
-                document.getElementById('progressBar').style.width = progress + '%';
-                document.getElementById('progressPercent').textContent = progress + '%';
-                
-                const total = sent + failed;
-                stats.successRate = total > 0 ? Math.floor((sent / total) * 100) : 100;
-                
+                document.getElementById('startBtn').disabled = false;
                 updateAttackList();
-                
-                if (i < amount - 1 && attacks[id] && attacks[id].active) {
-                    await new Promise(resolve => setTimeout(resolve, delay * 1000));
-                }
-            }
-            
-            if (attacks[id]) {
-                attacks[id].active = false;
-            }
-            
-            document.getElementById('startBtn').disabled = false;
-            document.getElementById('progressPanel').style.display = 'none';
-            updateAttackList();
+            })();
         }
 
         function stopAttack(id) {
             if (attacks[id]) {
                 attacks[id].active = false;
                 updateAttackList();
-                document.getElementById('startBtn').disabled = false;
-                document.getElementById('progressPanel').style.display = 'none';
+                
+                const activeExists = Object.values(attacks).some(a => a.active);
+                if (!activeExists) {
+                    document.getElementById('startBtn').disabled = false;
+                }
             }
         }
 
         document.getElementById('amount').addEventListener('input', function(e) {
-            if (this.value > 500) this.value = 500;
-            if (this.value < 1) this.value = 1;
+             if (this.value === "") return;
+             let val = parseInt(this.value);
+             if (val > 500) this.value = 500;
+             else if (val < 1) this.value = 1;
         });
-
-        updateStats();
 
         document.getElementById('useProxy').addEventListener('click', function() {
             const label = this.nextElementSibling;
             label.textContent = this.classList.contains('active') ? 'Enabled' : 'Disabled';
         });
+
+        updateStats();
     </script>
 </body>
 </html>
