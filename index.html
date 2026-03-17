@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarVerse NGL Spammer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-container {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px -10px #00000080;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #0f172a;
+        }
+        
+        .title {
+             text-align: center;
+             font-size: 28px;
+             font-weight: 700;
+             margin-bottom: 30px;
+             color: #f1f5f9;
+             text-transform: uppercase;
+             letter-spacing: 2px;
+             border-bottom: 2px solid #2dd4bf;
+             padding-bottom: 15px;
+             display: block;
+             width: 100%;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: #2dd4bf;
+            box-shadow: 0 10px 25px -10px #2dd4bf;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1;
+        }
+        
+        .stat-unit {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 25px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #334155;
+            color: #f1f5f9;
+            letter-spacing: 0.5px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #f1f5f9;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #2dd4bf;
+            box-shadow: 0 0 0 3px #2dd4bf20;
+        }
+        
+        .input-field::placeholder {
+            color: #475569;
+        }
+        
+        textarea.input-field {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .button {
+            width: 100%;
+            padding: 14px;
+            background: #2dd4bf;
+            border: none;
+            border-radius: 12px;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .button:hover {
+            background: #14b8a6;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -10px #2dd4bf;
+        }
+        
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #475569;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #2dd4bf;
+            border-radius: 4px;
+            transition: width 0.2s;
+        }
+        
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #0f172a;
+            border-radius: 12px;
+            font-size: 13px;
+            border: 1px solid #334155;
+        }
+        
+        .log-entry {
+            padding: 8px;
+            border-bottom: 1px solid #1e293b;
+            color: #cbd5e1;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        
+        .log-entry.success {
+            color: #2dd4bf;
+        }
+        
+        .log-entry.error {
+            color: #f87171;
+        }
+        
+        .log-entry .time {
+            color: #64748b;
+            margin-right: 12px;
+        }
+        
+        .settings-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .toggle-label {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .toggle-checkbox {
+            width: 44px;
+            height: 24px;
+            background: #334155;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .toggle-checkbox.active {
+            background: #2dd4bf;
+        }
+        
+        .toggle-checkbox::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s;
+        }
+        
+        .toggle-checkbox.active::after {
+            left: 22px;
+        }
+        
+        .attack-list {
+            margin-top: 20px;
+        }
+        
+        .attack-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            align-items: center;
+            border: 1px solid #334155;
+        }
+        
+        .attack-item .username {
+            color: #2dd4bf;
+            font-weight: 600;
+        }
+        
+        .attack-item .progress-small {
+            width: 80px;
+            height: 6px;
+            background: #334155;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .attack-item .progress-fill-small {
+            height: 100%;
+            background: #2dd4bf;
+            border-radius: 3px;
+        }
+        
+        .stop-btn {
+            background: #ef444420;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .stop-btn:hover {
+            background: #ef4444;
+            color: #f1f5f9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        .footer a {
+            color: #2dd4bf;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Video Banner -->
+        <div class="video-container">
+            <video autoplay loop muted playsinline>
+                <source src="https://files.catbox.moe/5i0z54.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="title">⚡STARVERSE - NGL SPAMMER⚡</div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Attacks</div>
+                <div class="stat-value" id="totalAttacks">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Messages Sent</div>
+                <div class="stat-value" id="totalSent">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active</div>
+                <div class="stat-value" id="activeAttacks">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Success Rate</div>
+                <div class="stat-value" id="successRate">0<span class="stat-unit">%</span></div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Attack Panel -->
+            <div class="card">
+                <div class="card-title">🚀 New Attack</div>
+                
+                <div class="input-group">
+                    <label class="input-label">NGL Username</label>
+                    <input type="text" class="input-field" id="username" placeholder="StarVerse">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Message</label>
+                    <textarea class="input-field" id="message" placeholder="Enter your message...">test</textarea>
+                </div>
+                
+               <div class="input-group">
+                    <label class="input-label">Amount (Max 500)</label>
+                     <input 
+                      type="number" 
+                      class="input-field" 
+                      id="amount" 
+                      placeholder="Masukkan jumlah"
+                      min="0" 
+                      max="500"
+                    >
+                </div>
+                
+                <div class="settings-panel">
+                    <div class="toggle-switch">
+                        <span class="toggle-label">Use Proxy</span>
+                        <div class="toggle-checkbox" id="useProxy" onclick="this.classList.toggle('active')"></div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="toggle-label">Delay</span>
+                        <input type="number" class="input-field" id="delay" value="1" min="1" max="5" style="width: 70px; padding: 8px;">
+                        <span style="color: #94a3b8;">s</span>
+                    </div>
+                </div>
+                
+                <button class="button" id="startBtn" onclick="startAttack()">Start Spam</button>
+                
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span style="color: #94a3b8;">Progress</span>
+                        <span style="color: #2dd4bf; font-weight: 600;" id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 8px;">
+                        <span>Sent: <span style="color: #2dd4bf;" id="sentCount">0</span></span>
+                        <span>Failed: <span style="color: #f87171;" id="failedCount">0</span></span>
+                        <span>Total: <span id="totalCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Live Logs -->
+            <div class="card">
+                <div class="card-title">📋 Live Logs</div>
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry">
+                        <span class="time">[SYSTEM]</span> Ready. Waiting for commands...
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Active Attacks -->
+        <div class="card">
+            <div class="card-title">⚡ Active Attacks</div>
+            <div class="attack-list" id="attackList">
+                <div style="text-align: center; color: #64748b; padding: 20px;">
+                    No active attacks
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>⚡ STARVERSE - NGL SPAMMER ⚡</p>
+            <p>Telegram: <a href="https://t.me/LenzStarVerse" target="_blank">@LenzStarVerse</a> | Channel: <a href="https://t.me/LenzStarVerse" target="_blank">t.me/LenzStarVerse</a></p>
+            <p style="font-size: 12px; color: #475569;">⚠️ For educational purposes only</p>
+        </div>
+    </div>
+    
+    <script>
+        // Variables
+        let attacks = {};
+        let attackId = 0;
+        let stats = {
+            totalAttacks: 0,
+            totalSent: 0,
+            activeAttacks: 0,
+            successRate: 100
+        };
+        
+        // Add log
+        function addLog(message, type = 'info') {
+            const logContainer = document.getElementById('logContainer');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : '');
+            
+            const now = new Date();
+            const timeStr = '[' + 
+                now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0') + ':' +
+                now.getSeconds().toString().padStart(2, '0') + ']';
+            
+            logEntry.innerHTML = '<span class="time">' + timeStr + '</span> ' + message;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            if (logContainer.children.length > 100) {
+                logContainer.removeChild(logContainer.children[0]);
+            }
+        }
+        
+        // Update stats
+        function updateStats() {
+            document.getElementById('totalAttacks').textContent = stats.totalAttacks;
+            document.getElementById('totalSent').textContent = stats.totalSent;
+            document.getElementById('activeAttacks').textContent = stats.activeAttacks;
+            document.getElementById('successRate').textContent = stats.successRate;
+        }
+        
+        // Update attack list
+        function updateAttackList() {
+            const attackList = document.getElementById('attackList');
+            const active = Object.values(attacks).filter(a => a.active);
+            stats.activeAttacks = active.length;
+            
+            if (active.length === 0) {
+                attackList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 20px;">No active attacks</div>';
+            } else {
+                let html = '';
+                active.forEach(attack => {
+                    const progress = Math.floor((attack.sent / attack.amount) * 100);
+                    html += `
+                        <div class="attack-item">
+                            <span class="username">@${attack.username}</span>
+                            <span style="color: #94a3b8;">${attack.sent}/${attack.amount}</span>
+                            <div class="progress-small">
+                                <div class="progress-fill-small" style="width: ${progress}%"></div>
+                            </div>
+                            <button class="stop-btn" onclick="stopAttack('${attack.id}')">STOP</button>
+                        </div>
+                    `;
+                });
+                attackList.innerHTML = html;
+            }
+            updateStats();
+        }
+        
+        // Generate device ID
+        function generateDeviceId() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            const parts = [];
+            for (let i = 0; i < 5; i++) {
+                let length = [8, 4, 4, 4, 12][i];
+                let part = '';
+                for (let j = 0; j < length; j++) {
+                    part += chars[Math.floor(Math.random() * chars.length)];
+                }
+                parts.push(part);
+            }
+            return parts.join('-');
+        }
+        
+        // Get user agent
+        function getUserAgent() {
+            const uas = [
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/17.1 Safari/605.1.35",
+                "Mozilla/5.0 (Linux; Android 14; SM-S918B) AppleWebKit/537.36 Chrome/120.0.6099.144 Mobile Safari/537.36",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/605.1.15 Version/17.1 Mobile/15E148 Safari/604.1"
+            ];
+            return uas[Math.floor(Math.random() * uas.length)];
+        }
+        
+        // Send NGL message
+        async function sendNGLMessage(username, message) {
+            const url = 'https://ngl.link/api/submit';
+            
+            const headers = {
+                'accept': '*/*',
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'origin': 'https://ngl.link',
+                'referer': `https://ngl.link/${username}`,
+                'user-agent': getUserAgent()
+            };
+            
+            const data = new URLSearchParams({
+                'username': username,
+                'question': message,
+                'deviceId': generateDeviceId(),
+                'gameSlug': '',
+                'referrer': ''
+            });
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: data,
+                    mode: 'cors'
+                });
+                return response.status === 200;
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+        
+        // Start attack
+        async function startAttack() {
+            const username = document.getElementById('username').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const amount = parseInt(document.getElementById('amount').value);
+            const delay = parseFloat(document.getElementById('delay').value);
+            
+            if (!username || !message) {
+                addLog('Please fill all fields', 'error');
+                return;
+            }
+            
+            if (amount < 1 || amount > 500) {
+                addLog('Amount must be between 1 and 500', 'error');
+                return;
+            }
+            
+            const id = 'attack_' + (++attackId);
+            
+            attacks[id] = {
+                id: id,
+                username: username,
+                message: message,
+                amount: amount,
+                delay: delay,
+                active: true,
+                sent: 0,
+                failed: 0,
+                startTime: new Date().toISOString()
+            };
+            
+            stats.totalAttacks++;
+            
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('totalCount').textContent = amount;
+            document.getElementById('sentCount').textContent = '0';
+            document.getElementById('failedCount').textContent = '0';
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('progressPercent').textContent = '0%';
+            
+            addLog(`Started attack on @${username} (${amount} messages)`, 'success');
+            updateAttackList();
+            
+            // Run attack
+            for (let i = 0; i < amount; i++) {
+                if (!attacks[id] || !attacks[id].active) {
+                    addLog(`Attack on @${username} stopped`, 'error');
+                    break;
+                }
+                
+                const success = await sendNGLMessage(username, message);
+                
+                if (success) {
+                    attacks[id].sent++;
+                    stats.totalSent++;
+                    addLog(`✓ Message ${attacks[id].sent}/${amount} sent`, 'success');
+                } else {
+                    attacks[id].failed++;
+                    addLog(`✗ Message ${attacks[id].sent + attacks[id].failed}/${amount} failed`, 'error');
+                }
+                
+                const sent = attacks[id].sent;
+                const failed = attacks[id].failed;
+                const progress = Math.floor((sent / amount) * 100);
+                
+                document.getElementById('sentCount').textContent = sent;
+                document.getElementById('failedCount').textContent = failed;
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressPercent').textContent = progress + '%';
+                
+                const total = sent + failed;
+                stats.successRate = total > 0 ? Math.floor((sent / total) * 100) : 100;
+                
+                updateAttackList();
+                
+                if (i < amount - 1 && attacks[id] && attacks[id].active) {
+                    await new Promise(resolve => setTimeout(resolve, delay * 1000));
+                }
+            }
+            
+            if (attacks[id]) {
+                attacks[id].active = false;
+                addLog(`Attack on @${username} finished`, 'info');
+            }
+            
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('progressContainer').style.display = 'none';
+            updateAttackList();
+        }
+        
+        // Stop attack
+        function stopAttack(id) {
+            if (attacks[id]) {
+                attacks[id].active = false;
+                addLog(`Stopped attack on @${attacks[id].username}`, 'error');
+                updateAttackList();
+            }
+        }
+        
+        // Initialize
+        addLog('StarVerse NGL Spammer initialized', 'info');
+        addLog('System ready', 'info');
+        updateStats();
+        
+        // Input validation
+        document.getElementById('amount').addEventListener('input', function(e) {
+            if (this.value > 500) this.value = 500;
+            if (this.value < 1) this.value = 1;
+        });
+    </script>
+</body>
+</html>
